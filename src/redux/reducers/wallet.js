@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 };
 
-function walletInfo(state = INITIAL_STATE, action) {
+function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
   case SAVE_CURRENCIES:
     return {
@@ -22,4 +22,4 @@ function walletInfo(state = INITIAL_STATE, action) {
   }
 }
 
-export default walletInfo;
+export default wallet;

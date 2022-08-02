@@ -1,5 +1,5 @@
 export const ADD_USER = 'ADD_USER';
-export const SAVE_CURRENCIES = 'PERSONAL_INFO';
+export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 export const RESULT_API = 'RESULT_API';
 export const LOADING = 'LOADING';
 
@@ -29,9 +29,9 @@ export function fetchCurrencieThunk() {
       .then((response) => response.json())
       .then((data) => {
         const keys = Object.keys(data);
-        dispatch(console.log(saveCurrencies(keys.filter(
+        dispatch(saveCurrencies(keys.filter(
           (element) => element !== 'USDT',
-        )))); // ok
+        ))); // ok
       });
   };
 }

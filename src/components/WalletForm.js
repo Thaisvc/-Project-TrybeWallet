@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrencieThunk } from '../redux/actions';
 
@@ -79,11 +80,16 @@ class WalletForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  coin: console.log('estado', state.wallet.currencies),
+  coin: state.wallet.currencies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   selectCurrencie: () => dispatch(fetchCurrencieThunk()),
 });
+
+WalletForm.propTypes = {
+  selectCurrencie: PropTypes.func.isRequired,
+  coin: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
