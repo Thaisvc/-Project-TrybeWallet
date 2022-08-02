@@ -67,7 +67,7 @@ class Login extends React.Component {
          <label htmlFor="password-input ">
            Senha:
            <input
-             type="text"
+             type="password"
              data-testid="password-input"
              id="password-input "
              name="password"
