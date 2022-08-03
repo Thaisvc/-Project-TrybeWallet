@@ -20,6 +20,7 @@ function wallet(state = INITIAL_STATE, action) {
   case SAVE_EXPENSES:
     return {
       ...state,
+      // matenho o q tinha dentro da chaave expenses e add um novo
       expenses: [...state.expenses, action.data],
     };
   default:

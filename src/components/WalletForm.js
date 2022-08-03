@@ -10,9 +10,9 @@ class WalletForm extends Component {
       id: 0,
       despesa: '',
       descrição: '',
-      moeda: '',
-      pagamento: '',
-      categoria: '',
+      moeda: 'USD',
+      pagamento: 'Dinheiro',
+      categoria: 'Alimentaçao',
     };
   }
 
@@ -42,9 +42,9 @@ class WalletForm extends Component {
     this.setState({
       despesa: '',
       descrição: '',
-      moeda: '',
-      pagamento: '',
-      categoria: '',
+      moeda: 'USD',
+      pagamento: 'Dinheiro',
+      categoria: 'Alimentaçao',
     });
   }
 
