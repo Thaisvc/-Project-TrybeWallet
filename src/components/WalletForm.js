@@ -8,141 +8,137 @@ class WalletForm extends Component {
     super();
     this.state = {
       id: 0,
-      despesa: '',
-      descrição: '',
-      moeda: 'USD',
-      pagamento: 'Dinheiro',
-      categoria: 'Alimentaçao',
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     };
   }
 
   componentDidMount() {
-    const { selectCurrencie } = this.props;
-    selectCurrencie();
+    const { getCurrencies } = this.props;
+    getCurrencies();
   }
 
-  handlerChange = ({ target }) => {
-    const { name, value } = target;
-    this.setState({
-      [name]: value,
-    });
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { id, despesa, descrição, moeda, pagamento, categoria } = this.state;
-    const { saveExpenses } = this.props;
-    // salvando meu state
-    const objEstado = { id, despesa, descrição, moeda, pagamento, categoria };
-    // envia o state
-    saveExpenses(objEstado);
-    // atualizo a id
-    this.setState({ id: id + 1 });
-    // reseta meus campos de input
-    this.setState({
-      despesa: '',
-      descrição: '',
-      moeda: 'USD',
-      pagamento: 'Dinheiro',
-      categoria: 'Alimentaçao',
+    const { saveExpense, wallet } = this.props;
+    this.setState({ id: wallet.expenses.length }, () => {
+      saveExpense(this.state);
+      this.setState({
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+      });
     });
   }
 
   render() {
-    const { coin } = this.props;
-    //  console.log('resutado', coin);
-    const { despesa, descrição, moeda, pagamento, categoria } = this.state;
-    // console.log(despesa, descrição, moeda, pagamento, categoria);
+    const { wallet } = this.props;
+    const { value, description, currency, method, tag } = this.state;
     return (
-      <div>
-        WalletForm
-
-        <form onSubmit={ this.handleSubmit }>
-          <label htmlFor="value-input">
-            Valor Da Despesa:
-            <input
-              data-testid="value-input"
-              type="text"
-              id="value-input "
-              name="despesa"
-              value={ despesa }
-              onChange={ this.handlerChange }
-            />
-          </label>
-
-          <label htmlFor="description-input">
-            Despesa:
-            <input
-              data-testid="description-input"
-              type="text"
-              id="description-input "
-              name="descrição"
-              value={ descrição }
-              onChange={ this.handlerChange }
-            />
-          </label>
-
-          <label htmlFor="currency-input">
-            Escolha a moeda:
-            <select
-              data-testid="currency-input"
-              name="moeda"
-              value={ moeda }
-              onChange={ this.handlerChange }
-            >
-              {coin.map((elem) => (<option key={ elem }>{elem}</option>))}
-            </select>
-          </label>
-
-          <label htmlFor="method-input">
-            Escolha O método de pagamento :
-            <select
-              data-testid="method-input"
-              name="pagamento"
-              value={ pagamento }
-              onChange={ this.handlerChange }
-            >
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-
-          <label htmlFor="tag-input">
-            Escolha a categoria (tag) para a despesa. :
-            <select
-              data-testid="tag-input"
-              name="categoria"
-              value={ categoria }
-              onChange={ this.handlerChange }
-            >
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-            </select>
-          </label>
-          <button type="submit">Adicionar despesa</button>
-        </form>
-
-      </div>
+      <form onSubmit={ this.handleSubmit }>
+        <label htmlFor="value-input">
+          Valor Da Despesa:
+          {' '}
+          <input
+            type="number"
+            data-testid="value-input"
+            id="value-input"
+            name="value"
+            value={ value }
+            onChange={ this.handleChange }
+          />
+        </label>
+        <label htmlFor="description-input">
+          Despesa:
+          {' '}
+          <input
+            type="text"
+            data-testid="description-input"
+            id="description-input"
+            name="description"
+            value={ description }
+            onChange={ this.handleChange }
+          />
+        </label>
+        <label htmlFor="currency-input">
+          Escolha a moeda:
+          {' '}
+          <select
+            data-testid="currency-input"
+            id="currency-input"
+            name="currency"
+            value={ currency }
+            onChange={ this.handleChange }
+          >
+            { wallet.currencies.map((currencyCode) => (
+              <option key={ currencyCode }>{ currencyCode }</option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="method-input">
+          Escolha O método de pagamento :
+          {' '}
+          <select
+            data-testid="method-input"
+            id="method-input"
+            name="method"
+            value={ method }
+            onChange={ this.handleChange }
+          >
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
+          </select>
+        </label>
+        <label htmlFor="tag-input">
+          Escolha a categoria (tag) para a despesa. :
+          {' '}
+          <select
+            data-testid="tag-input"
+            id="tag-input"
+            name="tag"
+            value={ tag }
+            onChange={ this.handleChange }
+          >
+            <option>{ tag }</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+          </select>
+        </label>
+        <button type="submit">Adicionar despesa</button>
+      </form>
     );
   }
 }
 
+WalletForm.propTypes = {
+  wallet: PropTypes.shape({
+    currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    expenses: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  }).isRequired,
+  getCurrencies: PropTypes.func.isRequired,
+  saveExpense: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  coin: state.wallet.currencies,
+  // coin: state.wallet.currencies,
+  wallet: state.wallet,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  selectCurrencie: () => dispatch(fetchCurrencieThunk()),
-  saveExpenses: (data) => dispatch(saveExpenseThunk(data)),
+  getCurrencies: () => dispatch(fetchCurrencieThunk()),
+  saveExpense: (data) => dispatch(saveExpenseThunk(data)),
 });
 
-WalletForm.propTypes = {
-  selectCurrencie: PropTypes.func.isRequired,
-  coin: PropTypes.arrayOf(PropTypes.string).isRequired,
-  saveExpenses: PropTypes.func.isRequired,
-};
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
