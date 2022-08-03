@@ -28,7 +28,7 @@ class WalletForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { saveExpense, wallet } = this.props;
-    console.log(wallet.expenses);
+    // console.log(wallet.expenses);
     this.setState({ id: wallet.expenses.length }, () => {
       saveExpense(this.state);
       this.setState({

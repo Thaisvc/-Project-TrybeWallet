@@ -3,6 +3,7 @@ import coinApi from '../../service/coinApi';
 export const ADD_USER = 'ADD_USER';
 export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const LOADING = 'LOADING';
 
 export const addingUsers = (emails) => (
@@ -25,8 +26,13 @@ export const loading = () => ({
 });
 
 export const saveExpenses = (data) => ({
-  type: SAVE_EXPENSES,
+  type: 'SAVE_EXPENSES',
   data,
+});
+
+export const deleteExpenses = (delet) => ({
+  type: 'DELETE_EXPENSE',
+  delet,
 });
 
 export function fetchCurrencieThunk() {
