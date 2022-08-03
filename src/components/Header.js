@@ -11,7 +11,7 @@ class Header extends Component {
           { user.email }
         </p>
         <p data-testid="total-field">
-          { wallet.expenses.length <= 0 ? 0 : wallet.expenses
+          { wallet.expenses.length <= 0 ? '0,00' : wallet.expenses
             .reduce((acc, curr) => acc
             + (curr.value * curr.exchangeRates[curr.currency].ask), 0).toFixed(2)}
 
