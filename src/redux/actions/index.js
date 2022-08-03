@@ -25,7 +25,7 @@ export const loading = () => ({
 });
 
 export const saveExpenses = (data) => ({
-  type: 'SAVE_EXPENSES',
+  type: SAVE_EXPENSES,
   data,
 });
 
@@ -49,9 +49,15 @@ export function fetchCurrencieThunk() {
 
 // chama a api normal
 
-export const saveExpenseThunk = (form) => async (dispatch) => {
-  const response = await coinApi();
-  const exchangeRates = response;
-  const result = { ...form, exchangeRates };
-  dispatch(saveExpenses(result));
+export const saveExpenseError = (error) => ({ type: 'SAVE_EXPENSE_ERROR', error });
+
+export const saveExpenseThunk = (walletForm) => async (dispatch) => {
+  try {
+    const response = await coinApi();
+    const exchangeRates = response;
+    const payload = { ...walletForm, exchangeRates };
+    dispatch(saveExpenses(payload));
+  } catch (error) {
+    dispatch(saveExpenseError(error));
+  }
 };
