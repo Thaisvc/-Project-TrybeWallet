@@ -11,21 +11,8 @@ class Header extends Component {
         <div>Header</div>
         <p data-testid="email-field">{ getEmail }</p>
         <p data-testid="total-field">
-          {getExpenses.reduce((acc, cur) => {
-            const valor = Number(cur.value);
-            console.log('valor', cur.value);
-
-            const moedas = cur.moeda;
-            console.log('moeda', moedas);
-            // acesso o aks de dentro da moeda
-            const atualMoeda = Number(cur.exchangeRates[moedas].ask);
-            console.log('atual', atualMoeda);
-
-            const mult = valor * atualMoeda;
-            console.log('mult', mult);
-            acc += mult;
-            return Math.round(acc * 100) / 100;
-          }, 0)}
+          { getExpenses.length <= 0 ? 0 : getExpenses.reduce((acc, curr) => acc
+            + (curr.despesa * curr.exchangeRates[curr.moeda].ask), 0).toFixed(2)}
         </p>
 
         <p data-testid="header-currency-field">Câmbio: BRL</p>
