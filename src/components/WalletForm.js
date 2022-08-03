@@ -28,6 +28,7 @@ class WalletForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { saveExpense, wallet } = this.props;
+    console.log(wallet.expenses);
     this.setState({ id: wallet.expenses.length }, () => {
       saveExpense(this.state);
       this.setState({
@@ -49,7 +50,7 @@ class WalletForm extends Component {
           Valor Da Despesa:
           {' '}
           <input
-            type="number"
+            type="text"
             data-testid="value-input"
             id="value-input"
             name="value"
@@ -122,15 +123,6 @@ class WalletForm extends Component {
   }
 }
 
-WalletForm.propTypes = {
-  wallet: PropTypes.shape({
-    currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-    expenses: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  }).isRequired,
-  getCurrencies: PropTypes.func.isRequired,
-  saveExpense: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   // coin: state.wallet.currencies,
   wallet: state.wallet,
@@ -141,4 +133,12 @@ const mapDispatchToProps = (dispatch) => ({
   saveExpense: (data) => dispatch(saveExpenseThunk(data)),
 });
 
+WalletForm.propTypes = {
+  wallet: PropTypes.shape({
+    currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    expenses: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  }).isRequired,
+  getCurrencies: PropTypes.func.isRequired,
+  saveExpense: PropTypes.func.isRequired,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
