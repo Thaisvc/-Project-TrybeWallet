@@ -46,15 +46,7 @@ class Table extends Component {
                     Deletar
                   </button>
                 </td>
-                <td>
-                  <button
-                    data-testid="edit-btn"
-                    type="button"
-                    onClick={ () => { } }
-                  >
-                    Editar despesa
-                  </button>
-                </td>
+
               </tr>
             );
           })}
