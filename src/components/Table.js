@@ -46,7 +46,6 @@ class Table extends Component {
                     Deletar
                   </button>
                 </td>
-
               </tr>
             );
           })}
