@@ -7,15 +7,15 @@ class Header extends Component {
     const { user, wallet } = this.props;
     return (
       <div>
-        <p data-testid="email-field">
+        <h4 data-testid="email-field">
           { user.email }
-        </p>
-        <p data-testid="total-field">
+        </h4>
+        <h4 data-testid="total-field">
           { wallet.expenses.length <= 0 ? '0.00' : wallet.expenses
             .reduce((acc, curr) => acc
             + (curr.value * curr.exchangeRates[curr.currency].ask), 0).toFixed(2)}
-        </p>
-        <p data-testid="header-currency-field">BRL</p>
+        </h4>
+        <h4 data-testid="header-currency-field">BRL</h4>
       </div>
     );
   }

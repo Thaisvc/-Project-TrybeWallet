@@ -52,11 +52,11 @@ class Login extends React.Component {
 
      return (
        <main>
-         <div>Login</div>
+         <h1>Login</h1>
          <label htmlFor="email-input">
            E-mail:
            <input
-             type="text"
+             type="email"
              data-testid="email-input"
              id="email-input"
              name="email"
