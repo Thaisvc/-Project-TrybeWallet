@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { deleteExpenses } from '../redux/actions';
 
 class Table extends Component {
@@ -23,19 +24,19 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          { stateInfo.map(({ id, description, tag, method,
+          {stateInfo.map(({ id, description, tag, method,
             value, currency, exchangeRates }) => {
             const nunber = Number(value);
             const exchangeRate = exchangeRates[currency];
             return (
               <tr key={ id }>
-                <td>{ description }</td>
-                <td>{ tag }</td>
-                <td>{ method }</td>
-                <td>{ nunber.toFixed(2) }</td>
-                <td>{ exchangeRate.name }</td>
-                <td>{ Number(exchangeRate.ask).toFixed(2) }</td>
-                <td>{ (exchangeRate.ask * value).toFixed(2) }</td>
+                <td>{description}</td>
+                <td>{tag}</td>
+                <td>{method}</td>
+                <td>{nunber.toFixed(2)}</td>
+                <td>{exchangeRate.name}</td>
+                <td>{Number(exchangeRate.ask).toFixed(2)}</td>
+                <td>{(exchangeRate.ask * value).toFixed(2)}</td>
                 <td>Real</td>
                 <td>
                   <button
@@ -45,6 +46,15 @@ class Table extends Component {
                   >
                     Deletar
                   </button>
+
+                  <Link to={ `/Editar/${id}` }>
+                    <button
+                      data-testid="edit-btn"
+                      type="button"
+                    >
+                      Editar despesa
+                    </button>
+                  </Link>
                 </td>
               </tr>
             );

@@ -4,7 +4,8 @@ export const ADD_USER = 'ADD_USER';
 export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
-export const LOADING = 'LOADING';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const EDIT_EXPENSE_ID = 'EDIT_EXPENSE_ID';
 
 export const addingUsers = (emails) => (
   {
@@ -33,6 +34,16 @@ export const saveExpenses = (data) => ({
 export const deleteExpenses = (delet) => ({
   type: 'DELETE_EXPENSE',
   delet,
+});
+
+export const editExpenses = (edit) => ({
+  type: 'EDIT_EXPENSE',
+  edit,
+});
+
+export const editExpensesId = (ids) => ({
+  type: 'EDIT_EXPENSE_ID',
+  ids,
 });
 
 export function fetchCurrencieThunk() {
