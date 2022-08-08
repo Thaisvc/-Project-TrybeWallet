@@ -35,7 +35,7 @@ class WalletFormEdit extends Component {
 
     const findExpense = stateInfo.find((expense) => expense.id === Number(id)); // Number converte meu id q é uma string em numero
     console.log('id editado',findExpense.id);
-    const { editor, editorID } = this.props;
+    const { editor, editorID, history} = this.props;
     // console.log(wallet.expenses);
     const {
       value,
@@ -58,7 +58,7 @@ class WalletFormEdit extends Component {
     editorID(nweState)
       
     
-    //return  <Redirect to="/carteira" />
+    history.push("/carteira");
   }
 
   render() {
