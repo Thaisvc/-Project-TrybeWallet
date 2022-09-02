@@ -9,18 +9,18 @@ class Table extends Component {
     const { stateInfo, delExpense } = this.props;
     // console.log(stateInfo);
     return (
-      <table width="1000" align="center" border="1">
-        <thead>
+      <table className="table">
+        <thead className="thead-dark">
           <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Tag</th>
+            <th scope="col">Método de pagamento</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Moeda</th>
+            <th scope="col">Câmbio utilizado</th>
+            <th scope="col">Valor convertido</th>
+            <th scope="col">Moeda de conversão</th>
+            <th scope="col">Editar/Excluir</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +40,7 @@ class Table extends Component {
                 <td>Real</td>
                 <td>
                   <button
+                    className="btn btn-danger btnDel"
                     data-testid="delete-btn"
                     type="button"
                     onClick={ () => { delExpense(id); } }
@@ -49,6 +50,7 @@ class Table extends Component {
 
                   <Link to={ `/Editar/${id}` }>
                     <button
+                      className="btn btn-warning btnEdit"
                       data-testid="edit-btn"
                       type="button"
                     >

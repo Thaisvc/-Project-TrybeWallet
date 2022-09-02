@@ -50,6 +50,7 @@ class WalletForm extends Component {
           Valor Da Despesa:
           {' '}
           <input
+            className="form-control"
             type="text"
             data-testid="value-input"
             id="value-input"
@@ -62,6 +63,7 @@ class WalletForm extends Component {
           Despesa:
           {' '}
           <input
+            className="form-control"
             type="text"
             data-testid="description-input"
             id="description-input"
@@ -74,6 +76,7 @@ class WalletForm extends Component {
           Escolha a moeda:
           {' '}
           <select
+            className="form-control"
             data-testid="currency-input"
             id="currency-input"
             name="currency"
@@ -89,6 +92,7 @@ class WalletForm extends Component {
           Escolha O método de pagamento :
           {' '}
           <select
+            className="form-control"
             data-testid="method-input"
             id="method-input"
             name="method"
@@ -104,6 +108,7 @@ class WalletForm extends Component {
           Escolha a categoria (tag) para a despesa. :
           {' '}
           <select
+            className="form-control"
             data-testid="tag-input"
             id="tag-input"
             name="tag"
@@ -117,7 +122,13 @@ class WalletForm extends Component {
             <option>Saúde</option>
           </select>
         </label>
-        <button type="submit">Adicionar despesa</button>
+        <button
+          className="btn btn-outline-secondary"
+          type="submit"
+        >
+          Adicionar despesa
+
+        </button>
       </form>
     );
   }

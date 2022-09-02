@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+// import { Button }from 'react-bootstrap/Button'; outra forma de usar p bootstrap
+// https://react-bootstrap.github.io/getting-started/introduction/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc#installation
 import { addingUsers } from '../redux/actions/index';
+import '../App.css';
 
 class Login extends React.Component {
   constructor() {
@@ -53,30 +56,34 @@ class Login extends React.Component {
      return (
        <main>
          <h1>Login</h1>
-         <label htmlFor="email-input">
-           E-mail:
-           <input
-             type="email"
-             data-testid="email-input"
-             id="email-input"
-             name="email"
-             onChange={ (e) => this.handlerEmail(e) }
-           />
-         </label>
+         <div className="form-group">
+           <label htmlFor="email-input">
+             E-mail:
+             <input
+               className="form-control"
+               type="email"
+               data-testid="email-input"
+               id="email-input"
+               name="email"
+               onChange={ (e) => this.handlerEmail(e) }
+             />
+           </label>
 
-         <label htmlFor="password-input ">
-           Senha:
-           <input
-             type="password"
-             data-testid="password-input"
-             id="password-input "
-             name="password"
-             onChange={ (e) => this.handlerPassword(e) }
-           />
-         </label>
-
+           <label htmlFor="password-input ">
+             Senha:
+             <input
+               className="form-control"
+               type="password"
+               data-testid="password-input"
+               id="password-input "
+               name="password"
+               onChange={ (e) => this.handlerPassword(e) }
+             />
+           </label>
+         </div>
          <Link to="/carteira">
            <button
+             className=" mystyle btn btn-outline-success"
              type="button"
              disabled={ btnEnviar }
              onClick={ () => loginSubmit(email) }

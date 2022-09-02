@@ -39,3 +39,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+.mystyle {
+  width: 20%; /* meu stilo sobre o bootsrap */
+}
+
+.btnEdit {
+  height: 70px;
+  width: 60%;
+}
+
+.btnDel {
+  height: 60px;
+  width: 60%;
+}
